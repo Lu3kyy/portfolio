@@ -17,10 +17,10 @@ const links = [
     icon: Mail,
     label: "Email",
     value: "fabledparadox@gmail.com",
-    href: "mailto:fabledparadox@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&to=fabledparadox@gmail.com",
     hover: "hover:border-violet-400/50 hover:bg-violet-500/5",
     iconColor: "text-violet-400",
-    external: false,
+    external: true,
   },
   {
     icon: Phone,
