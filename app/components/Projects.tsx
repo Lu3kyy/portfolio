@@ -20,7 +20,7 @@ const projects = [
   {
     title: "Coming Soon",
     description:
-      "Another project is in the works — stay tuned! This card will be populated once it's live.",
+      "Another project is in the works - stay tuned! This card will be populated once it's live.",
     tags: ["TBD"],
     liveUrl: "#",
     githubUrl: "#",
