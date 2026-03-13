@@ -23,8 +23,8 @@ const skillGroups = [
       { name: "React", icon: "⚛️" },
       { name: "ASP.NET", icon: "🔵" },
       { name: "Tailwind CSS", icon: "🌊" },
-      { name: "Spring Boot", icon: "🍃" },
-      { name: "Node.js", icon: "🌿" },
+      { name: "EF Core", icon: "🧩" },
+      { name: "Flowbite", icon: "🧱" },
     ],
   },
   {
