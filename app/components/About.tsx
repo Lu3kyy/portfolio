@@ -16,7 +16,7 @@ const stats = [
   { label: "Focus", value: "Full Stack" },
   { label: "Level", value: "Junior Dev" },
   { label: "Available", value: "For Hire" },
-  { label: "Location", value: "Your City" },
+  { label: "Location", value: "Stockton, CA" },
 ];
 
 export default function About() {

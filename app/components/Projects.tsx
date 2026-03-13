@@ -8,7 +8,7 @@ type Project = {
   description?: string;
   tags: string[];
   liveUrl: string;
-  githubUrl: string;
+  githubUrl?: string;
   gradient: string;
   borderHover: string;
   accent: string;
@@ -18,26 +18,28 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Coming Soon",
-    tags: ["TBD"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "10 Mini Challenge API + Frontend",
+    description:
+      "A full-stack mini challenge build with API integration and frontend implementation.",
+    tags: ["API", "Frontend", "Vercel"],
+    liveUrl: "https://afojsx.vercel.app",
     gradient: "from-cyan-500/20 via-sky-500/10 to-blue-500/10",
     borderHover: "hover:border-sky-500/40",
     accent: "text-sky-400",
     emoji: "🚀",
-    comingSoon: true,
+    comingSoon: false,
   },
   {
-    title: "Coming Soon #2",
-    tags: ["TBD"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "Weather App",
+    description:
+      "Weather app with search and favorites functionality for quickly tracking locations.",
+    tags: ["Weather", "Search", "Favorites"],
+    liveUrl: "https://day1-weather-sprint.vercel.app",
     gradient: "from-violet-500/20 via-purple-500/10 to-indigo-500/10",
     borderHover: "hover:border-violet-500/40",
     accent: "text-violet-400",
-    emoji: "🚧",
-    comingSoon: true,
+    emoji: "🌧️",
+    comingSoon: false,
   },
 ];
 
@@ -92,32 +94,35 @@ export default function Projects() {
                     {project.emoji}
                   </motion.span>
 
-                  {!project.comingSoon && (
-                    <div className="flex gap-2">
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="View source on GitHub"
-                        className="rounded-lg bg-white/5 p-2 text-slate-400 transition-all hover:bg-white/10 hover:text-white"
-                        whileHover={{ scale: 1.12 }}
-                        whileTap={{ scale: 0.92 }}
-                      >
-                        <Github size={18} />
-                      </motion.a>
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Open live project"
-                        className="rounded-lg bg-white/5 p-2 text-slate-400 transition-all hover:bg-white/10 hover:text-white"
-                        whileHover={{ scale: 1.12 }}
-                        whileTap={{ scale: 0.92 }}
-                      >
-                        <ExternalLink size={18} />
-                      </motion.a>
-                    </div>
-                  )}
+                  {!project.comingSoon &&
+                    (project.githubUrl || project.liveUrl) && (
+                      <div className="flex gap-2">
+                        {project.githubUrl && (
+                          <motion.a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="View source on GitHub"
+                            className="rounded-lg bg-white/5 p-2 text-slate-400 transition-all hover:bg-white/10 hover:text-white"
+                            whileHover={{ scale: 1.12 }}
+                            whileTap={{ scale: 0.92 }}
+                          >
+                            <Github size={18} />
+                          </motion.a>
+                        )}
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Open live project"
+                          className="rounded-lg bg-white/5 p-2 text-slate-400 transition-all hover:bg-white/10 hover:text-white"
+                          whileHover={{ scale: 1.12 }}
+                          whileTap={{ scale: 0.92 }}
+                        >
+                          <ExternalLink size={18} />
+                        </motion.a>
+                      </div>
+                    )}
                 </div>
 
                 <h3 className={`text-xl font-bold ${project.accent} mb-3`}>
