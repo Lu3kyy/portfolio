@@ -1,8 +1,74 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
 import { ExternalLink, FileText, Github, Mail, Phone } from "lucide-react";
 import Image from "next/image";
+import { useRef, useState } from "react";
+
+const DUCK_SIZE = 64;
+const SPEED = 1.8;
+
+function JuppyDuck({
+  containerRef,
+}: {
+  containerRef: React.RefObject<HTMLElement | null>;
+}) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const dirRef = useRef(1);
+  const posRef = useRef(0);
+  const [flipped, setFlipped] = useState(false);
+
+  useAnimationFrame((t) => {
+    const containerWidth =
+      containerRef.current?.offsetWidth ??
+      (typeof window !== "undefined" ? window.innerWidth : 1200);
+    const maxX = containerWidth - DUCK_SIZE;
+    posRef.current += dirRef.current * SPEED;
+    if (posRef.current >= maxX) {
+      posRef.current = maxX;
+      dirRef.current = -1;
+      setFlipped(true);
+    } else if (posRef.current <= 0) {
+      posRef.current = 0;
+      dirRef.current = 1;
+      setFlipped(false);
+    }
+    x.set(posRef.current);
+    y.set(Math.sin(t / 400) * 5);
+  });
+
+  return (
+    <motion.div
+      style={{
+        x,
+        y,
+        scaleX: flipped ? 1 : -1,
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        zIndex: 50,
+        pointerEvents: "auto",
+        cursor: "pointer",
+      }}
+      onClick={() => {
+        const audio = new Audio(
+          "/freesound_community-075176_duck-quack-40345.mp3",
+        );
+        audio.play();
+      }}
+    >
+      <Image
+        src="/juppy_duckie_1_copy.png"
+        alt="Juppy Duckie"
+        width={DUCK_SIZE}
+        height={DUCK_SIZE}
+        draggable={false}
+        onDragStart={(e) => e.preventDefault()}
+      />
+    </motion.div>
+  );
+}
 
 const links = [
   {
@@ -45,8 +111,13 @@ const links = [
 ];
 
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section id="contact" className="relative overflow-hidden px-6 py-32">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="relative overflow-hidden px-6 py-32"
+    >
       {/* Bottom glows */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute bottom-0 left-1/4 h-75 w-125 rounded-full bg-violet-900/20 blur-[110px]" />
@@ -135,36 +206,8 @@ export default function Contact() {
           Designed &amp; Built by Lucas Guptill &bull;{" "}
           {new Date().getFullYear()}
         </motion.p>
-
-        {/* Juppy Duckie */}
-        <div
-          className="relative mt-6 flex justify-center overflow-hidden"
-          style={{ height: 68 }}
-        >
-          <motion.div
-            className="absolute bottom-[-10px]"
-            style={{ transformOrigin: "bottom center" }}
-            animate={{
-              rotate: [-10, 10, -10],
-              y: [0, -7, 0],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 1.8,
-              ease: "easeInOut",
-            }}
-            whileHover={{ scale: 1.12, y: -16 }}
-          >
-            <Image
-              src="/juppy_duckie_1_copy.png"
-              alt="Juppy Duckie"
-              width={88}
-              height={88}
-              className="drop-shadow-[0_4px_14px_rgba(167,139,250,0.4)]"
-            />
-          </motion.div>
-        </div>
       </div>
+      <JuppyDuck containerRef={sectionRef} />
     </section>
   );
 }
