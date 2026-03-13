@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, FileText, Github, Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 const links = [
   {
@@ -134,6 +135,35 @@ export default function Contact() {
           Designed &amp; Built by Lucas Guptill &bull;{" "}
           {new Date().getFullYear()}
         </motion.p>
+
+        {/* Juppy Duckie */}
+        <div
+          className="relative mt-6 flex justify-center overflow-hidden"
+          style={{ height: 68 }}
+        >
+          <motion.div
+            className="absolute bottom-[-10px]"
+            style={{ transformOrigin: "bottom center" }}
+            animate={{
+              rotate: [-10, 10, -10],
+              y: [0, -7, 0],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 1.8,
+              ease: "easeInOut",
+            }}
+            whileHover={{ scale: 1.12, y: -16 }}
+          >
+            <Image
+              src="/juppy_duckie_1_copy.png"
+              alt="Juppy Duckie"
+              width={88}
+              height={88}
+              className="drop-shadow-[0_4px_14px_rgba(167,139,250,0.4)]"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
