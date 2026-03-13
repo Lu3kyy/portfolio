@@ -3,11 +3,22 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  description?: string;
+  tags: string[];
+  liveUrl: string;
+  githubUrl: string;
+  gradient: string;
+  borderHover: string;
+  accent: string;
+  emoji: string;
+  comingSoon: boolean;
+};
+
+const projects: Project[] = [
   {
     title: "Coming Soon",
-    description:
-      "A new project is on the way. I&apos;m currently building something exciting and will add it here soon.",
     tags: ["TBD"],
     liveUrl: "#",
     githubUrl: "#",

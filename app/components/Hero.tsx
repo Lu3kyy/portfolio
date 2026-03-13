@@ -92,7 +92,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-24 md:pt-0"
     >
       {/* ── Animated gradient blobs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
