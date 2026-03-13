@@ -91,10 +91,10 @@ export default function About() {
               Junior Full Stack Developer
             </h3>
             <p className="mb-5 leading-relaxed text-slate-400">
-              I&apos;m a passionate junior developer who loves building things
-              for the web - both polished front-end experiences and robust
-              back-end services. I enjoy every layer of the stack and I&apos;m
-              always eager to pick up new tools and solve interesting problems.
+              I&apos;m a junior developer who loves building things for the web
+              - from polished front-end experiences to reliable back-end
+              services. I grew up in Modesto and have lived in the Central
+              Valley most of my life.
             </p>
             <p className="mb-10 leading-relaxed text-slate-400">
               My core stack spans{" "}

@@ -5,7 +5,7 @@ import { ExternalLink, FileText, Github, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-const DUCK_SIZE = 64;
+const DUCK_SIZE = 46;
 const SPEED = 1.8;
 
 function JuppyDuck({

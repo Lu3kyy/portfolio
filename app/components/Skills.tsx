@@ -1,42 +1,83 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { SimpleIcon } from "simple-icons";
+import {
+  siCodeberg,
+  siCss,
+  siDotnet,
+  siFigma,
+  siGit,
+  siGithub,
+  siHtml5,
+  siJavascript,
+  siNextdotjs,
+  siOpenjdk,
+  siPostgresql,
+  siPostman,
+  siReact,
+  siTailwindcss,
+  siTypescript,
+  siVercel,
+} from "simple-icons/icons";
+
+type SkillIcon = SimpleIcon | SimpleIcon[];
+
+function BrandIcon({ icon }: { icon: SkillIcon }) {
+  const icons = Array.isArray(icon) ? icon : [icon];
+
+  return (
+    <div className="mb-2 flex items-center justify-center gap-1">
+      {icons.map((item, idx) => (
+        <svg
+          key={`${item.slug}-${idx}`}
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+          aria-hidden="true"
+          style={{ color: `#${item.hex}` }}
+        >
+          <path d={item.path} fill="currentColor" />
+        </svg>
+      ))}
+    </div>
+  );
+}
 
 const skillGroups = [
   {
     category: "Languages",
     accent: "violet",
     skills: [
-      { name: "TypeScript", icon: "🔷" },
-      { name: "JavaScript", icon: "⚡" },
-      { name: "C#", icon: "🟦" },
-      { name: "Java", icon: "☕" },
-      { name: "HTML & CSS", icon: "🎨" },
-      { name: "SQL", icon: "🗄️" },
+      { name: "TypeScript", icon: siTypescript },
+      { name: "JavaScript", icon: siJavascript },
+      { name: "C#", icon: siDotnet },
+      { name: "Java", icon: siOpenjdk },
+      { name: "HTML & CSS", icon: [siHtml5, siCss] },
+      { name: "SQL", icon: siPostgresql },
     ],
   },
   {
     category: "Frameworks & Libraries",
     accent: "sky",
     skills: [
-      { name: "Next.js", icon: "▲" },
-      { name: "React", icon: "⚛️" },
-      { name: "ASP.NET", icon: "🔵" },
-      { name: "Tailwind CSS", icon: "🌊" },
-      { name: "EF Core", icon: "🧩" },
-      { name: "Flowbite", icon: "🧱" },
+      { name: "Next.js", icon: siNextdotjs },
+      { name: "React", icon: siReact },
+      { name: "ASP.NET", icon: siDotnet },
+      { name: "Tailwind CSS", icon: siTailwindcss },
+      { name: "EF Core", icon: siDotnet },
+      { name: "Flowbite", icon: siTailwindcss },
     ],
   },
   {
     category: "Tools & Platforms",
     accent: "indigo",
     skills: [
-      { name: "Git & GitHub", icon: "🐙" },
-      { name: "Azure", icon: "☁️" },
-      { name: "Figma", icon: "🎯" },
-      { name: "Postman", icon: "📮" },
-      { name: "VS Code", icon: "💻" },
-      { name: "Vercel", icon: "🚀" },
+      { name: "Git & GitHub", icon: [siGit, siGithub] },
+      { name: "Azure", icon: siDotnet },
+      { name: "Figma", icon: siFigma },
+      { name: "Postman", icon: siPostman },
+      { name: "VS Code", icon: siCodeberg },
+      { name: "Vercel", icon: siVercel },
     ],
   },
 ];
@@ -121,7 +162,7 @@ export default function Skills() {
                     whileHover={{ scale: 1.08, y: -4 }}
                     className={`rounded-xl border bg-white/3 p-4 ${accentBorder[group.accent]} cursor-default text-center transition-all duration-200 select-none`}
                   >
-                    <div className="mb-2 text-2xl">{skill.icon}</div>
+                    <BrandIcon icon={skill.icon} />
                     <p className="text-xs leading-snug font-medium text-slate-300">
                       {skill.name}
                     </p>
